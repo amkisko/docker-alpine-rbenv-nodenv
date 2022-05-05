@@ -7,6 +7,7 @@ DockerHub: https://hub.docker.com/r/amkisko/alpine-rbenv-nodenv
 ```dockerfile
 FROM amkisko/alpine-rbenv-nodenv
 
-RUN apk add curl
+RUN nodenv install 16.0.0
+RUN rbenv install 3.1.0 
 RUN echo "Hello!"
 ```
