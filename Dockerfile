@@ -6,12 +6,11 @@ RUN apk add bash git curl build-base zlib zlib-dev openssl openssl-dev libpq-dev
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-# TODO: wait until fix here https://github.com/nodenv/node-build-update-defs/issues/62
+# TODO: wait until fix here: https://github.com/nodenv/node-build/issues/722
 RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 RUN echo 'export PATH="~/.nodenv/bin:$PATH"; eval "$(~/.nodenv/bin/nodenv init -)"' > /etc/profile.d/nodenv_init.sh
 RUN mkdir -p "$(~/.nodenv/bin/nodenv root)"/plugins
 RUN git clone https://github.com/amkisko/node-build.git "$(~/.nodenv/bin/nodenv root)"/plugins/node-build
-RUN git clone https://github.com/nodenv/node-build-update-defs.git "$(~/.nodenv/bin/nodenv root)"/plugins/node-build-update-defs
 RUN NODE_BUILD_MIRROR_URL=https://unofficial-builds.nodejs.org/download/release ~/.nodenv/bin/nodenv install 18.0.0
 
 RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
