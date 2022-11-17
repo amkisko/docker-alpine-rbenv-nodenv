@@ -11,7 +11,7 @@ RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 RUN echo 'export PATH="~/.nodenv/bin:$PATH"; eval "$(~/.nodenv/bin/nodenv init -)"' > /etc/profile.d/nodenv_init.sh
 RUN mkdir -p "$(~/.nodenv/bin/nodenv root)"/plugins
 RUN git clone https://github.com/amkisko/node-build.git "$(~/.nodenv/bin/nodenv root)"/plugins/node-build
-RUN NODE_BUILD_MIRROR_URL=https://unofficial-builds.nodejs.org/download/release ~/.nodenv/bin/nodenv install 18.0.0
+RUN NODE_BUILD_MIRROR_URL=https://unofficial-builds.nodejs.org/download/release ~/.nodenv/bin/nodenv --compile install 18.0.0
 
 RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 RUN echo 'export PATH="~/.rbenv/bin:$PATH"; eval "$(~/.rbenv/bin/rbenv init -)"' > /etc/profile.d/rbenv_init.sh
