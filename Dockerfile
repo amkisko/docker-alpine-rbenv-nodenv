@@ -7,6 +7,8 @@ RUN apk add bash git curl build-base zlib zlib-dev openssl openssl-dev libpq-dev
 SHELL ["/bin/bash", "--login", "-c"]
 
 # TODO: wait until fix here: https://github.com/nodenv/node-build/issues/722
+RUN apk add --no-cache --update libc6-compat && \
+    ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2
 RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 RUN echo 'export PATH="~/.nodenv/bin:$PATH"; eval "$(~/.nodenv/bin/nodenv init -)"' > /etc/profile.d/nodenv_init.sh
 RUN mkdir -p "$(~/.nodenv/bin/nodenv root)"/plugins
